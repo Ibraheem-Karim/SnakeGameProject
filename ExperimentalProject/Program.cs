@@ -1,4 +1,5 @@
-﻿using SnakeGameProject_C_Version;
+﻿
+
 
 namespace ExperimentalProject
 {
@@ -8,12 +9,39 @@ namespace ExperimentalProject
         {
             //ChangingBackgroundColor();
             //SettingCursorPosition();
-            Boundaries.DrawBoundaries();
+            //Boundaries.DrawBoundaries();
+            //APairTuple();
+            TestingLinkedListExtension();
+
+        }
+
+        private static void TestingLinkedListExtension()
+        {
+            var someList = new LinkedList<float>();
+
+            try
+            {
+                Console.WriteLine(someList.GetSecondToLastElement());
+
+                Console.WriteLine( "hello");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+        }
+
+        private static void APairTuple()
+        {
+            var pair = (1, "one");
+            Console.WriteLine($"First: {pair.Item1}, Second: {pair.Item2}");
         }
 
         private static void SettingCursorPosition()
         {
-           // Console.SetCursorPosition(c, r);
+            Console.SetCursorPosition(50, 5);
+            Console.WriteLine( "hello");
         }
 
         private static void ChangingBackgroundColor()

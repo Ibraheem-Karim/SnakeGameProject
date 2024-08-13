@@ -1,6 +1,6 @@
 ﻿namespace SnakeGameProject_C_Version
 {
-    public static class Boundaries
+    internal static class Boundaries
     {
         public const int LEFT_BOUNDARY = 0;
         public const int RIGHT_BOUNDARY = 41;
