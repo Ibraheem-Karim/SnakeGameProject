@@ -9,6 +9,19 @@
 	    public void IncreaseScoreByOne()
         {
             ++_score;
-        }                
+        }
+        
+        public void PrintScore() 
+        {
+            var aConsolePositionLocatedBesidesRightBoundary
+                = (Boundaries.RIGHT_BOUNDARY + 3, 1);
+
+            Console.SetCursorPosition
+                (aConsolePositionLocatedBesidesRightBoundary.Item1,
+                aConsolePositionLocatedBesidesRightBoundary.Item2);
+
+            Console.ResetColor();
+            Console.Write($"Your current score is: {Score}");
+        }
     };
 }

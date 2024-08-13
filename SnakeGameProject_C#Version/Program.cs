@@ -7,8 +7,8 @@
             ShowWelcomingMessage();
 
             Console.Clear();
-
-            Background background = new Background();
+            
+            Background background = new Background(new Snake(), new ScoreTracker());
             //Console console = new Console();
             int finalScore;
 

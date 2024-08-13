@@ -1,6 +1,8 @@
 ﻿
 
 
+using SnakeGameProject_C_Version;
+
 namespace ExperimentalProject
 {
     internal class Program
@@ -11,8 +13,45 @@ namespace ExperimentalProject
             //SettingCursorPosition();
             //Boundaries.DrawBoundaries();
             //APairTuple();
-            TestingLinkedListExtension();
+            //TestingLinkedListExtension();
+            //TestingReadKeyFunction();
 
+            TestingCheckingValidKeyFunction();
+        }
+
+        private static void TestingCheckingValidKeyFunction()
+        {
+            var keyInfo = Console.ReadKey(intercept: true);
+            char pressedKey = keyInfo.KeyChar;
+
+            if (CheckIfUserPressedAValidKey(pressedKey))
+            {
+                Console.WriteLine( "True");
+            }
+            else
+            {
+                Console.WriteLine("Oh!No!");
+            }
+        }
+
+        private static bool CheckIfUserPressedAValidKey(char pressedKey)
+        {
+            int integerValueOfChar = (int)pressedKey;
+
+            return integerValueOfChar switch
+            {
+                (int)DirectionOfSnakeMovement.LEFT or
+                (int)DirectionOfSnakeMovement.RIGHT or
+                (int)DirectionOfSnakeMovement.UP or
+                (int)DirectionOfSnakeMovement.DOWN => true,
+                _ => false
+            };
+        }
+
+        private static void TestingReadKeyFunction()
+        {
+            var keyInfo = Console.ReadKey(intercept: true);
+            Console.WriteLine(keyInfo.KeyChar);
         }
 
         private static void TestingLinkedListExtension()

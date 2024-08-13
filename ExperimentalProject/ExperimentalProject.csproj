@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SnakeGameProject_C#Version\SnakeGameProject_C#Version.csproj" />
+  </ItemGroup>
+
 </Project>

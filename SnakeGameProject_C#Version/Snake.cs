@@ -1,8 +1,4 @@
-﻿using SnakeGameProject_C_Version;
-using System.Collections.Generic;
-using System.Data.Common;
-
-namespace ExperimentalProject
+﻿namespace SnakeGameProject_C_Version
 {
     internal class Snake
     {
@@ -75,4 +71,3 @@ namespace ExperimentalProject
         }
     }
 }
-
