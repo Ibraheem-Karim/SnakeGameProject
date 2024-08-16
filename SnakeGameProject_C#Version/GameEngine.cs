@@ -7,13 +7,49 @@
         private int _randomFoodRow;
         private Snake _snake;
         private ScoreTracker _scoreTracker;
-        private bool _snakeHitItself = false;
         private bool _snakeAteFood = false;
 
         public GameEngine(Snake snake, ScoreTracker scoreTracker)
         {
             this._snake = snake;
             this._scoreTracker = scoreTracker;
+        }
+
+        public void startGame()
+        {
+            Boundaries.DrawBoundaries();
+            _snake.AddANewSnakeHead(_snake.HeadOfSnakeColumnPosition
+                    , _snake.HeadOfSnakeRowPosition);
+            this.GenerateAPieceOfFoodWithinBoundaries();
+
+            while(true)
+            {
+                DirectionOfSnakeMovement snakeMovementDirectionInput
+                    = GetSnakeDirectionInput();
+
+                UpdateSnakeHeadPosition(snakeMovementDirectionInput);
+
+                if (CheckIfSnakeAteFood())
+                {
+                    this.GenerateAPieceOfFoodWithinBoundaries();
+                    _scoreTracker.UpdateScore(1);
+                }
+                else if(_snake.Length > 1 && CheckIfNewPositionIsNotValid())
+                {
+                    UndoHeadPositionUpdate(snakeMovementDirectionInput);                    
+                    continue;
+                }
+                else if (CheckIfSnakeHitBoundaries() || CheckIfSnakeHitItself())
+                {
+                    return;
+                }
+                else
+                {
+                    _snake.RemoveSnakeTail();
+                }
+                _snake.AddANewSnakeHead(_snake.HeadOfSnakeColumnPosition
+                    , _snake.HeadOfSnakeRowPosition);
+            }
         }
 
         private void GenerateAPieceOfFoodWithinBoundaries()
@@ -37,7 +73,7 @@
             {
                 var keyInfo = Console.ReadKey(intercept: true);
                 pressedKey = keyInfo.KeyChar;
-            } while (CheckIfUserPressedAValidKey(pressedKey));
+            } while (!CheckIfUserPressedAValidKey(pressedKey));
 
             return (DirectionOfSnakeMovement)pressedKey;
         }
@@ -59,8 +95,7 @@
         private bool CheckIfSnakeAteFood()
         {
             return _snake.HeadOfSnakeColumnPosition == _randomFoodColumn &&
-                _snake.HeadOfSnakeRowPosition == _randomFoodRow &&
-                !_snakeAteFood;
+                _snake.HeadOfSnakeRowPosition == _randomFoodRow;
         }
 
         private bool CheckIfSnakeHitBoundaries()
@@ -71,31 +106,19 @@
                 _snake.HeadOfSnakeRowPosition == Boundaries.LOWER_BOUNDARY;
         }
 
-        public void startGame()
+        private bool CheckIfNewPositionIsNotValid()
         {
-            Boundaries.DrawBoundaries();
-            this.GenerateAPieceOfFoodWithinBoundaries();
-
-            while(true)
-            {
-                DirectionOfSnakeMovement snakeMovementDirectionInput
-                    = GetSnakeDirectionInput();
-
-                moveSnake(snakeMovementDirectionInput);
-
-                if(CheckIfSnakeAteFood())
-                {
-                    _snakeAteFood = true;
-                    _scoreTracker.UpdateScore(1);
-                }
-                else if(CheckIfSnakeHitBoundaries() || _snakeHitItself)
-                {
-                    return;
-                }
-            }
+            return _snake.HeadOfSnakeColumnPosition == _snake.GetPositionBeforeHead().Item1
+                && _snake.HeadOfSnakeRowPosition == _snake.GetPositionBeforeHead().Item2;
         }
 
-        private void moveSnake(DirectionOfSnakeMovement movementDirectionInput)
+        private bool CheckIfSnakeHitItself()
+        {
+            return _snake.ContainsPosition(_snake.HeadOfSnakeColumnPosition
+                , _snake.HeadOfSnakeRowPosition);
+        }
+
+        private void UpdateSnakeHeadPosition(DirectionOfSnakeMovement movementDirectionInput)
         {
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -111,28 +134,10 @@
                     break;
                 default:
                     break;
-            }
-
-            if (CheckIfMovementIsNotValid())
-            {
-                UndoMove(movementDirectionInput);
-                return;
-            }
-
-
-
-            bool CheckIfMovementIsNotValid()
-            {
-                return _snake.HeadOfSnakeColumnPosition == _snake.GetPositionBeforeHead().Item1
-                    && _snake.HeadOfSnakeRowPosition == _snake.GetPositionBeforeHead().Item2;
-            }  
-            bool CheckIfSnakeHitItself()
-            {
-
-            }
+            }                     
         }
 
-        private void UndoMove(DirectionOfSnakeMovement movementDirectionInput)
+        private void UndoHeadPositionUpdate(DirectionOfSnakeMovement movementDirectionInput)
         {
             switch (movementDirectionInput)
             {
@@ -155,3 +160,6 @@
 
     }
 }
+
+
+

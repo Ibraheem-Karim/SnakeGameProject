@@ -93,3 +93,24 @@ namespace ExperimentalProject
         }
     }
 }
+
+
+
+
+//Old version of that thing:
+
+//else if (_snake.Length > 1)
+//{
+//    if (CheckIfNewPositionIsNotValid())
+//    {
+//        UndoHeadPositionUpdate(snakeMovementDirectionInput);
+//    }
+//    else
+//    {
+//        _snake.RemoveSnakeTail();
+
+//        _snake.AddANewSnakeHead(_snake.HeadOfSnakeColumnPosition
+//    , _snake.HeadOfSnakeRowPosition);
+//    }
+//    continue;
+//}

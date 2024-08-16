@@ -10,11 +10,10 @@
 
         public int HeadOfSnakeRowPosition => _headOfSnakeRowPosition;
         public int HeadOfSnakeColumnPosition => _headOfSnakeColumnPosition;
+        public int Length => _listOfSnakePartsPositions.Count;
 
         public Snake()
-        {
-            AddASnakePosition(_headOfSnakeColumnPosition, _headOfSnakeRowPosition);
-        }
+        {}
 
         public void IncrementHeadColumnPosition()
         {
@@ -42,7 +41,7 @@
             return _hashSetOfPositions.Contains(positionToSearchFor);
         }
 
-        public void AddASnakePosition(int column, int row)
+        public void AddANewSnakeHead(int column, int row)
         {
             var positionToAdd = Tuple.Create(column, row);
             _listOfSnakePartsPositions.AddLast(positionToAdd);
@@ -53,7 +52,7 @@
             Console.WriteLine(SNAKE_PART);
         }
 
-        public void RemoveASnakePosition()
+        public void RemoveSnakeTail()
         {
             Tuple<int, int> temporary = _listOfSnakePartsPositions.First();
             _listOfSnakePartsPositions.RemoveFirst();

@@ -4,19 +4,21 @@
     {
         static void Main(string[] args)
         {
+            Console.ResetColor();
             ShowWelcomingMessage();
 
             Console.Clear();
             
-            GameEngine background = new GameEngine(new Snake(), new ScoreTracker());
-            //Console console = new Console();
-            int finalScore;
+            var scoreTracker = new ScoreTracker();
+            var snake = new Snake();
+            
+            GameEngine gameEngine = new GameEngine(snake, scoreTracker);
 
-            finalScore = background.startGame();
+            gameEngine.startGame();
             Console.Clear();
-            //c->chooseColor('w');
+            Console.ResetColor();
 
-            ShowExitingMessage(finalScore);
+            ShowExitingMessage(scoreTracker.Score);
         }
 
         private static void ShowWelcomingMessage()
@@ -30,7 +32,7 @@
 
         private static void ShowExitingMessage(int finalScore)
         {
-            Console.WriteLine("\"Game over!!");
+            Console.WriteLine("Game over!!");
             Console.WriteLine($"Your final score is: {finalScore}");
             Console.ReadKey(intercept: true);
         }
