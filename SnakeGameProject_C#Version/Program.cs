@@ -34,8 +34,6 @@
             Console.WriteLine("Game over!!");
             Console.WriteLine($"Your final score is: {finalScore}");
             Console.ReadKey(intercept: true);
-        }
-
-        
+        }        
     }
 }

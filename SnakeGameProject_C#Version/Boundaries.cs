@@ -16,33 +16,18 @@
                 for (int j = LEFT_BOUNDARY; j <= RIGHT_BOUNDARY; j++)
                 {
                     if (i == UPPER_BOUNDARY)
-                    {
-                        if (j == LEFT_BOUNDARY || j == RIGHT_BOUNDARY)
-                        {
-                            Console.Write(' ');
-                        }
-                        else
-                        {
-                            Console.Write('_');
-                        }
+                    {                        
+                        Console.Write((j == LEFT_BOUNDARY || j == RIGHT_BOUNDARY) ? " " : "_");
                     }
                     else if (i == LOWER_BOUNDARY)
                     {
                         Console.Write('^');
                     }
                     else
-                    {
-                        if (j == LEFT_BOUNDARY || j == RIGHT_BOUNDARY)
-                        {
-                            Console.Write('|');
-                        }
-                        else
-                        {
-                            Console.Write(' ');
-                        }
+                    {                        
+                        Console.Write((j == LEFT_BOUNDARY || j == RIGHT_BOUNDARY) ? "|" : " ");
                     }
                 }
-
                 Console.WriteLine();
             }
         }
