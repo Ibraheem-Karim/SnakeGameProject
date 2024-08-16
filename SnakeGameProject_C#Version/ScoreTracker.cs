@@ -6,12 +6,12 @@
 
         public int Score => _score;
 
-	    public void IncreaseScoreByOne()
+	    private void IncreaseScore(int value)
         {
-            ++_score;
+            _score += value;
         }
         
-        public void PrintScore() 
+        private void PrintScore() 
         {
             var aConsolePositionLocatedBesidesRightBoundary
                 = (Boundaries.RIGHT_BOUNDARY + 3, 1);
@@ -22,6 +22,12 @@
 
             Console.ResetColor();
             Console.Write($"Your current score is: {Score}");
+        }
+
+        public void UpdateScore(int value)
+        {
+            IncreaseScore(value);
+            PrintScore();
         }
     };
 }

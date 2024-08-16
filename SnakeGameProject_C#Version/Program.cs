@@ -8,7 +8,7 @@
 
             Console.Clear();
             
-            Background background = new Background(new Snake(), new ScoreTracker());
+            GameEngine background = new GameEngine(new Snake(), new ScoreTracker());
             //Console console = new Console();
             int finalScore;
 

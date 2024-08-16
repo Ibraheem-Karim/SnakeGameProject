@@ -9,6 +9,8 @@
 
         public static void DrawBoundaries()
         {
+            Console.SetCursorPosition(0, 0);
+
             for (int i = UPPER_BOUNDARY; i <= LOWER_BOUNDARY; i++)
             {
                 for (int j = LEFT_BOUNDARY; j <= RIGHT_BOUNDARY; j++)
