@@ -11,9 +11,7 @@
         public int HeadOfSnakeRowPosition => _headOfSnakeRowPosition;
         public int HeadOfSnakeColumnPosition => _headOfSnakeColumnPosition;
         public int Length => _listOfSnakePartsPositions.Count;
-
-        public Snake()
-        {}
+                
 
         public void IncrementHeadColumnPosition()
         {

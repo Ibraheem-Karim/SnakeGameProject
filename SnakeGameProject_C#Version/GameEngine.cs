@@ -7,7 +7,6 @@
         private int _randomFoodRow;
         private Snake _snake;
         private ScoreTracker _scoreTracker;
-        private bool _snakeAteFood = false;
 
         public GameEngine(Snake snake, ScoreTracker scoreTracker)
         {
